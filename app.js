@@ -10,7 +10,7 @@ app.set('view engine','ejs');
 
 // index page
 app.get('/', function(req, res) {
-  res.render('login');
+  res.render('login.ejs');
 });
 
 
