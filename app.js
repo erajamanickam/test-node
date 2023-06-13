@@ -3,14 +3,15 @@ var app = express();
 const path = require('path');
 // set the view engine to ejs
 
-app.set('views', path.join(__dirname, '/var/task/views'));
-app.set('view engine','ejs');
+// Set the view engine and views directory
+app.set('view engine', 'ejs');
+app.set('views', './views');
 
 // use res.render to load up an ejs view file
 
 // index page
 app.get('/', function(req, res) {
-  res.render('login.ejs');
+  res.render('login');
 });
 
 
