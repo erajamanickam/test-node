@@ -1,8 +1,17 @@
-const http = require('http');
-const routes = require('./routes')
+var express = require('express');
+var app = express();
 
-console.log(routes.someText);
-console.log('testing');
+// set the view engine to ejs
+app.set('view engine', 'ejs');
 
-const server = http.createServer(routes.handler);
-server.listen(3000);
+// use res.render to load up an ejs view file
+
+// index page
+app.get('/', function(req, res) {
+  res.render('login');
+});
+
+
+
+app.listen(3000);
+console.log('Server is listening on port 3000');

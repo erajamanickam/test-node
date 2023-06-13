@@ -1,44 +1,17 @@
-const fs = require('fs');
+var express = require('express');
+var app = express();
 
-const requestHandler = (req,res) => {
-    const url = req.url;
-    const method = req.method;
-    if( url==='/'){
-        res.setHeader('Content-type','text-html');
-        res.write('<html>')
-        res.write('<head><title>Enter form details</title><head>')
-        res.write('<body><form action="message" method="POST"><input type="text"></body>')
-        res.write('</html')
-        return res.end();
-    }
-    if ( url==='/message' && method == 'POST') {
+// set the view engine to ejs
+app.set('view engine', 'ejs');
 
-        const body = [];
-        req.on('data',(chunk)=>{
-            body.push(chunk)
-            console.log(chunk);
-        })
+// use res.render to load up an ejs view file
 
-        return req.on('end',()=>{
-            console.log('End event received');
-            const parsedBody = Buffer.concat(body).toString();
-            const message = parsedBody.split('=');
-            fs.writeFile('hello.txt',message[1],(err)=>{
-                console.log('Filewrite completed!');
-                res.setHeader('Location','/')
-                res.statusCode = 302;
-                return res.end();
-            });
-        })
-    }
+// index page
+app.get('/', function(req, res) {
+  res.render('login');
+});
 
-    res.setHeader('Content-type','text/html');
-    res.write('<html>')
-    res.write('<head><title>Coding Tuts</title></head>')
-    res.write('<body><h1>Hello world</h1></body>')
-    res.write('</html>')
-    res.end();
-};
 
-module.exports.handler = requestHandler;
-module.exports.someText = 'Printing some text';
+
+app.listen(3000);
+console.log('Server is listening on port 3000');
