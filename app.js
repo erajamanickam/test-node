@@ -19,9 +19,12 @@ app.get('/api', function(req, res) {
     res.send(__dirname);
 
     fs=require('fs')
-    fs.readdir("/", (err,filename)=>console.log(filename, 'root directory'));
+    fs.readdir("/", (err,filename)=>
+      // res.send(filename, 'root directory')
+      res.status(200).send(filename, 'Root directory')
+    );
 
-    fs.readdir("views/", (err,filename)=>console.log(filename, 'views directory'))
+    fs.readdir("var/", (err,filename)=>console.log(filename, 'views directory'))
     console.log(__dirname, 'test');
   });
 
