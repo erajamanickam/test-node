@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 const path = require('path');
+// const fs = require("fs");
 // set the view engine to ejs
 
 // Set the view engine and views directory
@@ -15,8 +16,19 @@ app.get('/', function(req, res) {
 });
 
 app.get('/api', function(req, res) {
-    res.send("HI1");
+    res.send(__dirname);
+
+    fs=require('fs')
+    fs.readdir("/", (err,filename)=>console.log(filename, 'root directory'));
+
+    fs.readdir("views/", (err,filename)=>console.log(filename, 'views directory'))
+    console.log(__dirname, 'test');
   });
 
 app.listen(3000);
 console.log('Server is listening on port 3000');
+
+
+
+
+  
