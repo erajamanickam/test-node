@@ -12,7 +12,7 @@ app.set('views', './views');
 
 // index page
 app.get('/', function(req, res) {
-  // res.render('login');
+  res.render('login');
   const viewsDirectory = path.join(__dirname, 'var/task');
 
 // // Check if the views directory exists
